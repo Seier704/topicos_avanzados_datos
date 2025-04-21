@@ -6,7 +6,7 @@ CURSOR pedido_cursor(p_cliente_id NUMBER) IS
 v_pedido_id NUMBER;
 v_total NUMBER;
 BEGIN
-OPEN pedido_cursor(1);
+OPEN pedido_cursor(2);
 LOOP
  FETCH pedido_cursor INTO v_pedido_id, v_total;
  EXIT WHEN pedido_cursor%NOTFOUND;
