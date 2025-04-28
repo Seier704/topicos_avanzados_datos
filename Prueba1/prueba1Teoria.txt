@@ -1,0 +1,28 @@
+1.Explica qué es una relación muchos a muchos y cómo se
+implementa en una base de datos relacional. Usa un ejemplo
+basado en las tablas del esquema creado para la prueba.
+R: Una relación N a N en base de datos, significa que un dato esta relacionado a varios datos, por ejemplo 
+en el esquema de la prueba tenemos relación entre entre Empleados y proyectos están relacionados de N a N, que significa que 
+los empleados pueden estar de a 0 a muchos proyectos y los proyectos pueden tener asignado de 0 a muchos Empleados, eso significa la relación N a N.
+
+2. Describe que es una vista y cómo la usarías para mostrar el
+total de horas asignadas por proyecto, incluyendo el nombre
+del proyecto. Escribe la consulta SQL para crear la vista
+(no es necesario ejecutarla).
+R: Una vista en base de datos es "una vista" que creamos nosotros para guardar información y ordenarla, por ejemplo yo creo una vista con respecto a empleados y proyectos en el que la vista me muestra los empleados con su nombre y la id de proyectos en las que están.
+
+CREATE OR REPLACE VIEW Vista_EmpleadosProyecto AS
+SELECT c.Nombre, p.ProyectoID
+FROM Empleados c
+JOIN Proyectos p ON c.ClienteID = p.ClienteID;
+
+3. ¿Qué es una excepción predefinida en PL/SQL y cómo se
+maneja? Da un ejemplo de cómo manejarías la excepción
+NO_DATA_FOUND en un bloque PL/SQL.
+R:Las excepciones predefinidas en PL/SQL son aquellas "Predefinidas" para detallar los posibles errores y excepciones que se pueden encontrar en nuestro codigo, primero corre linea por linea y en el primer error excepcion el bloque de codigo se detiene y nos da el error, por ejemplo el NO_DATA_FOUND es una excepcion que cuando estamos buscando un dato y ese dato no existe, nos saltara por pantalla que el dato que estamos buscando no existe, pero el codigo en si se ejecuta hasta la excepcion, asi evitando el error forzado por pantalla.
+
+
+4. Explica qué es un cursor explícito y cómo se usa en PL/SQL.
+Menciona al menos dos atributos de cursor (como %NOTFOUND) y
+su propósito.
+R: Muy parecido a pilas y colas el cursor explicito va dato en dato donde asignamos las variables(NUMBER,VARCHAR) de manera ordenada tal como tenemos nuestra base de datos, para luego asignarlas, donde tambien se pueden hacer manejos de excepciones como %NOTFOUND que nos dice que un atributo o dato que estamos asignando no existe, tenemos el UPDATE que es para actualizar el dato en caso de y entre otros mas.
