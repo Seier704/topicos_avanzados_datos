@@ -1,0 +1,12 @@
+CREATE TABLE Ventas (
+
+	id INT NOT NULL,
+	ClienteID INT NOT NULL,
+	detallePedido VARCHAR(30),
+	ciudad	VARCHAR(30),
+	Fecha DATE
+)
+
+PARTITION BY HASH(ClienteID)
+PARTITIONS 4;
+
