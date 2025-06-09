@@ -6,6 +6,13 @@
 CREATE INDEX idx_pedidos_pedidoid_productoid ON
 DetallesPedidos(PedidoID,ProductoID);
 
-SELECT * FROM Pedidos
+SELECT * 
+FROM DetallesPedidos
 WHERE PedidoID = 101 AND ProductoID = 1;
+
+EXPLAIN PLAN FOR
+SELECT * 
+FROM DetallesPedidos
+WHERE PedidoID = 101 AND ProductoID = 1;
+
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
