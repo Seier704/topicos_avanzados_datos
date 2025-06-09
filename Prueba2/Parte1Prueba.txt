@@ -1,0 +1,38 @@
+--1.La principal diferencia entre un procedimiento y una función es que para los procedimientos realizan tareas especificas, aceptando parámetros de entrada/salida mientras que las funciones realizan cálculos u operaciones devolviendo un único valor(RETURN) por ejemplo para la tabla de INVENTARIO puedo crear un procedimiento que me realice un UPDATE en el que agregue o quite ítems(cantidad) del inventario, y a su vez una función que me devuelva un mensaje con valor sobre que ítems se están vendiendo a que persona y la cantidad lleva.
+
+--2.CREATE OR REPLACE PROCEDURE actualizar_inventario(p_ProductoID IN NUMBER) IS 
+  CURSOR cur_detalles IS
+   SELECT ProductoID,Cantidad
+   FROM Inventario
+   WHERE ProductoID = p_ProductoID;
+La razón por que estoy usando un IN NUMBER con p_ProductoID es por que mas adelante voy a ingresar un valor y con dicho valor hare un update, por ende no uso el out
+
+--3. Para usar una función almacenada en nuestras consultas primero tenemos crear una variable NUMBER o VARCHAR, luego dicha variable volver a llamarla y dentro de ella llamar la función correspondiente que nos devolverá un resultado(NUMBER o VARCHAR)
+Ejemplo:
+CREATE OR REPLACE FUNCTION calcular_total(inventarioid IN NUMBER) RETURN NUMBER AS
+	VTotal NUMBER;
+BEGIN 
+	
+	SELECT i.Cantidad*p.Precio INTO VTotal
+	FROM Inventario i JOIN Productos p ON i.ProductoID = p.ProductoID
+	WHERE i.ProductoID = p.ProductoID;
+	RETURN(VTotal);
+	
+END;
+/
+EXEC calcular_total(100);
+
+
+
+4. Los triggers son un código que se ejecuta automáticamente en respuesta a eventos(INSERT,UPDATE,DELETE) sobre las tablas o vistas, por ejemplo 
+
+CREATE OR REPLACE TIRGGER validar_insertar
+BEFORE INSERT ON Movimientos
+FOR EACH ROW
+BEGIN
+	IF :NEW.Cantidad <= 0 THEN
+    		RAISE_APPLICATION_ERROR(-20001, 'Error: La cantidad debe ser mayor o igual a 0.');
+  	END IF;
+END;
+/
+	

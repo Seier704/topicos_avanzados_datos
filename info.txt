@@ -1,8 +1,0 @@
-Procedimiento:
-Bloque de código PL/SQL que realiza tareas específicas, acepta parámetros de entrada/salida, ejecuta acciones (como modificar datos) y no retorna valor directamente. Se invoca para automatizar procesos o lógica de negocio.
-
-Función:
-Bloque PL/SQL que realiza cálculos o acciones y devuelve un único valor. Se puede usar en consultas SQL y otras expresiones, acepta parámetros de entrada y siempre retorna un resultado.
-
-Trigger:
-Código PL/SQL que se ejecuta automáticamente en respuesta a eventos DML (INSERT, UPDATE, DELETE) sobre tablas o vistas, para validar, auditar o modificar datos antes o después de la acción.
